@@ -1,0 +1,27 @@
+.account-list-container {
+  padding: 24px;
+}
+
+.total-balance {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.no-accounts {
+  text-align: center;
+  padding: 48px;
+  color: #999;
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+  }
+}

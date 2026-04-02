@@ -1,0 +1,65 @@
+<div class="account-detail-container">
+  <app-loading-spinner *ngIf="isLoading" message="Loading account details..."></app-loading-spinner>
+
+  <div *ngIf="!isLoading && account">
+    <h2>{{ account.name }}</h2>
+    <p class="account-number">Account: {{ account.accountNumber }}</p>
+
+    <mat-card class="detail-card">
+      <mat-card-header>
+        <mat-card-title>Account Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="detail-row">
+          <span class="label">Account Type</span>
+          <span class="value">{{ account.accountType | titlecase }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Current Balance</span>
+          <span class="value">{{ account.balance | currency }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Available Balance</span>
+          <span class="value">{{ account.availableBalance | currency }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Status</span>
+          <span class="value">{{ account.status | titlecase }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Last Updated</span>
+          <span class="value">{{ account.lastUpdated | date:'medium' }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <h3>Recent Transactions</h3>
+    <div *ngIf="recentTransactions.length > 0">
+      <mat-card *ngFor="let txn of recentTransactions" class="transaction-card">
+        <mat-card-content class="txn-row">
+          <div class="txn-info">
+            <span class="txn-description">{{ txn.description }}</span>
+            <span class="txn-date">{{ txn.date | date:'shortDate' }}</span>
+          </div>
+          <span class="txn-amount" [class.credit]="txn.type === 'credit'" [class.debit]="txn.type === 'debit'">
+            {{ txn.amount | currency }}
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div *ngIf="recentTransactions.length === 0" class="no-transactions">
+      <p>No recent transactions for this account.</p>
+    </div>
+
+    <button mat-raised-button color="primary" routerLink="/accounts">
+      <mat-icon>arrow_back</mat-icon> Back to Accounts
+    </button>
+  </div>
+
+  <div *ngIf="!isLoading && !account" class="not-found">
+    <mat-icon>error_outline</mat-icon>
+    <p>Account not found.</p>
+    <button mat-raised-button color="primary" routerLink="/accounts">Back to Accounts</button>
+  </div>
+</div>

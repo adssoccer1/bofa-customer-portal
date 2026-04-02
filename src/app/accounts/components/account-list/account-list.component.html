@@ -1,0 +1,18 @@
+<div class="account-list-container">
+  <h2>My Accounts</h2>
+  <p class="total-balance">Total Balance: {{ totalBalance | currency }}</p>
+
+  <app-loading-spinner *ngIf="isLoading" message="Loading accounts..."></app-loading-spinner>
+
+  <div class="accounts-grid" *ngIf="!isLoading">
+    <app-account-summary
+      *ngFor="let account of accounts"
+      [account]="account">
+    </app-account-summary>
+  </div>
+
+  <div *ngIf="!isLoading && accounts.length === 0" class="no-accounts">
+    <mat-icon>account_balance_wallet</mat-icon>
+    <p>No accounts found.</p>
+  </div>
+</div>

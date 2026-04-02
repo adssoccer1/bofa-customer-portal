@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="app-header">
+  <button mat-icon-button (click)="onToggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="header-title">{{ title }}</span>
+  <span class="header-subtitle">Customer Portal</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="authService.isAuthenticated">
+    <span class="welcome-text" *ngIf="authService.currentUser as user">
+      Welcome, {{ user.firstName }}
+    </span>
+    <button mat-icon-button (click)="onLogout()" aria-label="Logout">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </ng-container>
+</mat-toolbar>

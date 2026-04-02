@@ -1,0 +1,28 @@
+<div class="app-container" *ngIf="authService.isAuthenticated; else loginPrompt">
+  <app-header (toggleSidenav)="toggleSidenav()"></app-header>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" opened class="app-sidenav">
+      <app-sidenav></app-sidenav>
+      <div class="quick-links">
+        <h4>Quick Actions</h4>
+        <div *ngFor="let link of quickLinks" class="quick-link-item">
+          <mat-icon>{{ link.icon }}</mat-icon>
+          <span>{{ link.label }}</span>
+        </div>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="main-content">
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<ng-template #loginPrompt>
+  <div class="login-container">
+    <h1>Bank of America</h1>
+    <p>Please sign in to access your accounts.</p>
+    <button mat-raised-button color="primary" (click)="authService.login()">Sign In</button>
+  </div>
+</ng-template>

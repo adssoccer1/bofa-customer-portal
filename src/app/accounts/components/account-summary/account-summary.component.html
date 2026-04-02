@@ -1,0 +1,29 @@
+<mat-card class="account-card" (click)="viewDetails()">
+  <mat-card-header>
+    <mat-icon mat-card-avatar class="account-icon">{{ getAccountTypeIcon() }}</mat-icon>
+    <mat-card-title>{{ account.name }}</mat-card-title>
+    <mat-card-subtitle>{{ account.accountNumber }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="balance-row">
+      <span class="balance-label">Current Balance</span>
+      <span class="balance-amount" [class.negative]="account.balance < 0">
+        {{ account.balance | currency }}
+      </span>
+    </div>
+    <div class="balance-row">
+      <span class="balance-label">Available</span>
+      <span class="balance-amount">{{ account.availableBalance | currency }}</span>
+    </div>
+    <div class="status-row">
+      <mat-chip-list>
+        <mat-chip [color]="account.status === 'active' ? 'primary' : 'warn'" selected>
+          {{ account.status | titlecase }}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button color="primary">VIEW DETAILS</button>
+  </mat-card-actions>
+</mat-card>

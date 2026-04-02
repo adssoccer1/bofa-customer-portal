@@ -1,0 +1,62 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Custom Material overrides - these reference legacy Material CSS classes
+   that will need to be updated during the MDC migration (v15+) */
+
+.mat-toolbar {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.mat-card {
+  border-radius: 8px !important;
+  margin-bottom: 16px;
+}
+
+.mat-card-header {
+  margin-bottom: 8px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #ccc;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  font-weight: 600;
+  color: #333;
+}
+
+.mat-cell {
+  font-size: 14px;
+}
+
+.mat-raised-button {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mat-sidenav {
+  border-right: 1px solid #e0e0e0;
+}
+
+.mat-list-item {
+  font-size: 14px;
+}
+
+/* BofA brand colors */
+:root {
+  --bofa-primary: #012169;
+  --bofa-secondary: #e31837;
+  --bofa-accent: #009cde;
+}

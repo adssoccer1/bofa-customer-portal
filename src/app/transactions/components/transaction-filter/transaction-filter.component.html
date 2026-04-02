@@ -1,0 +1,68 @@
+<mat-card class="filter-card">
+  <mat-card-header>
+    <mat-card-title>Filter Transactions</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="filterForm" class="filter-form">
+      <div class="filter-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>End Date</mat-label>
+          <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="filter-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Min Amount</mat-label>
+          <input matInput type="number" formControlName="minAmount" placeholder="0.00">
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Max Amount</mat-label>
+          <input matInput type="number" formControlName="maxAmount" placeholder="0.00">
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+      </div>
+
+      <div class="filter-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Transaction Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let txnType of transactionTypes" [value]="txnType.value">
+              {{ txnType.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option value="all">All Categories</mat-option>
+            <mat-option *ngFor="let cat of categories" [value]="cat">
+              {{ cat }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="filter-actions">
+        <button mat-raised-button color="primary" (click)="applyFilter()">
+          <mat-icon>filter_list</mat-icon> Apply Filter
+        </button>
+        <button mat-button (click)="resetFilter()">
+          <mat-icon>clear</mat-icon> Reset
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

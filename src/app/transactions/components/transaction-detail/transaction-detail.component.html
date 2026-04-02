@@ -1,0 +1,58 @@
+<div class="transaction-detail-container">
+  <app-loading-spinner *ngIf="isLoading" message="Loading transaction..."></app-loading-spinner>
+
+  <div *ngIf="!isLoading && transaction">
+    <h2>Transaction Details</h2>
+
+    <mat-card class="detail-card">
+      <mat-card-content>
+        <div class="detail-row">
+          <span class="label">Description</span>
+          <span class="value">{{ transaction.description }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Date</span>
+          <span class="value">{{ transaction.date | date:'fullDate' }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Amount</span>
+          <span class="value" [class.credit]="transaction.type === 'credit'" [class.debit]="transaction.type === 'debit'">
+            {{ transaction.amount | currency }}
+          </span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Type</span>
+          <span class="value">{{ transaction.type | titlecase }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Category</span>
+          <span class="value">{{ transaction.category }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Merchant</span>
+          <span class="value">{{ transaction.merchant }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Status</span>
+          <span class="value status-badge" [ngClass]="'status-' + transaction.status">
+            {{ transaction.status | titlecase }}
+          </span>
+        </div>
+        <div class="detail-row">
+          <span class="label">Transaction ID</span>
+          <span class="value">{{ transaction.id }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <button mat-raised-button color="primary" routerLink="/transactions">
+      <mat-icon>arrow_back</mat-icon> Back to Transactions
+    </button>
+  </div>
+
+  <div *ngIf="!isLoading && !transaction" class="not-found">
+    <mat-icon>error_outline</mat-icon>
+    <p>Transaction not found.</p>
+    <button mat-raised-button color="primary" routerLink="/transactions">Back to Transactions</button>
+  </div>
+</div>

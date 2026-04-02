@@ -1,0 +1,61 @@
+<div class="transaction-list-container">
+  <h2>Transaction History</h2>
+
+  <app-transaction-filter (filterChanged)="onFilterChanged($event)"></app-transaction-filter>
+
+  <app-loading-spinner *ngIf="isLoading" message="Loading transactions..."></app-loading-spinner>
+
+  <div class="table-container" *ngIf="!isLoading">
+    <table mat-table [dataSource]="dataSource" matSort class="transactions-table">
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let txn">{{ txn.date | date:'shortDate' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let txn">
+          <a [routerLink]="['/transactions', txn.id]" class="txn-link">{{ txn.description }}</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="merchant">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Merchant</th>
+        <td mat-cell *matCellDef="let txn">{{ txn.merchant }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+        <td mat-cell *matCellDef="let txn">
+          <mat-chip-list>
+            <mat-chip>{{ txn.category }}</mat-chip>
+          </mat-chip-list>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+        <td mat-cell *matCellDef="let txn"
+            [class.credit-amount]="txn.type === 'credit'"
+            [class.debit-amount]="txn.type === 'debit'">
+          {{ txn.amount | currency }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let txn">
+          <span class="status-badge" [ngClass]="'status-' + txn.status">
+            {{ txn.status | titlecase }}
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
