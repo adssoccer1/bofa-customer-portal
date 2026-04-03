@@ -28,9 +28,9 @@
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
         <td mat-cell *matCellDef="let txn">
-          <mat-chip-list>
-            <mat-chip>{{ txn.category }}</mat-chip>
-          </mat-chip-list>
+          <mat-chip-listbox>
+            <mat-chip-option>{{ txn.category }}</mat-chip-option>
+          </mat-chip-listbox>
         </td>
       </ng-container>
 
