@@ -5,7 +5,7 @@
     <h2>{{ account.name }}</h2>
     <p class="account-number">Account: {{ account.accountNumber }}</p>
 
-    <mat-card class="detail-card">
+    <mat-card appearance="outlined" class="detail-card">
       <mat-card-header>
         <mat-card-title>Account Information</mat-card-title>
       </mat-card-header>
@@ -35,7 +35,7 @@
 
     <h3>Recent Transactions</h3>
     <div *ngIf="recentTransactions.length > 0">
-      <mat-card *ngFor="let txn of recentTransactions" class="transaction-card">
+      <mat-card appearance="outlined" *ngFor="let txn of recentTransactions" class="transaction-card">
         <mat-card-content class="txn-row">
           <div class="txn-info">
             <span class="txn-description">{{ txn.description }}</span>

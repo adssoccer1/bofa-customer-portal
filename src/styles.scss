@@ -1,4 +1,4 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -6,51 +6,49 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* Custom Material overrides - these reference legacy Material CSS classes
    that will need to be updated during the MDC migration (v15+) */
 
-.mat-toolbar {
+.mat-mdc-toolbar {
   font-weight: 500;
   letter-spacing: 0.5px;
 }
 
-.mat-card {
+.mat-mdc-card {
   border-radius: 8px !important;
   margin-bottom: 16px;
 }
 
-.mat-card-header {
+.mat-mdc-card-header {
   margin-bottom: 8px;
 }
 
-.mat-form-field {
+.mat-mdc-form-field {
   width: 100%;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #ccc;
-}
+/* Removed legacy .mat-form-field-appearance-outline .mat-form-field-outline rule - no longer exists in MDC */
 
-.mat-table {
+.mat-mdc-table {
   width: 100%;
 }
 
-.mat-header-cell {
+.mat-mdc-header-cell {
   font-weight: 600;
   color: #333;
 }
 
-.mat-cell {
+.mat-mdc-cell {
   font-size: 14px;
 }
 
-.mat-raised-button {
+.mat-mdc-raised-button {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.mat-sidenav {
+.mat-mdc-sidenav {
   border-right: 1px solid #e0e0e0;
 }
 
-.mat-list-item {
+.mat-mdc-list-item {
   font-size: 14px;
 }
 
